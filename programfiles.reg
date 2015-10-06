@@ -1,0 +1,7 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment]
+"ProgramFiles"="C:\\Program Files"
+"SystemDrive"="c:"
+"SYSTEMROOT"="C:\\windows"
+"winsysdir"="C:\\windows\\system32"
