@@ -1,0 +1,24 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment]
+"APPDATA"="C:\\windows\\profiles\\parents\\Application Data"
+"CommonProgramFiles"="C:\\Program Files\\Fichiers communs"
+"ComSpec"=hex(2):43,3a,5c,77,69,6e,64,6f,77,73,5c,73,79,73,74,65,6d,33,32,5c,\
+  63,6d,64,2e,65,78,65,00
+"LOCALAPPDATA"="C:\\windows\\profiles\\parents\\Local Settings\\Application Data"
+"NUMBER_OF_PROCESSORS"="8"
+"OS"="Windows_NT"
+"PATH"=hex(2):43,3a,5c,77,69,6e,64,6f,77,73,5c,73,79,73,74,65,6d,33,32,3b,43,\
+  3a,5c,77,69,6e,64,6f,77,73,00
+"PATHEXT"=".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH"
+"PROCESSOR_ARCHITECTURE"="x86"
+"PROCESSOR_IDENTIFIER"="x86 Family 6 Model 58 Stepping 9, GenuineIntel"
+"PROCESSOR_LEVEL"="6"
+"PROCESSOR_REVISION"="3a09"
+"ProgramFiles"="C:\\Program Files"
+"SystemDrive"="c:"
+"SYSTEMROOT"="C:\\windows"
+"TEMP"=hex(2):43,3a,5c,77,69,6e,64,6f,77,73,5c,74,65,6d,70,00
+"TMP"=hex(2):43,3a,5c,77,69,6e,64,6f,77,73,5c,74,65,6d,70,00
+"windir"=hex(2):43,3a,5c,77,69,6e,64,6f,77,73,00
+"winsysdir"="C:\\windows\\system32"
