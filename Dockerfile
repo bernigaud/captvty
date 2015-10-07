@@ -25,7 +25,7 @@ RUN chmod a+rx /tmp/dotnet_setup3.sh
 #
 # Create a user to run Captvty
 #
-RUN useradd --home-dir /home/luser --create-home -K UID_MIN=42000 luser
+RUN useradd --home-dir /home/luser --create-home -K UID_MIN=1000 luser
 
 
 USER luser
@@ -86,10 +86,12 @@ RUN apt-mark auto 				\
 RUN apt-get -y -q autoremove
 RUN apt-get -y -q clean
 
- 
+COPY autorun.sh /home/luser/autorun.sh
+RUN chmod a+rx /home/luser/autorun.sh
+RUN chown luser:luser /home/luser/autorun.sh
 
 USER luser
 WORKDIR /home/luser
 
-COPY autorun.sh /home/luser/autorun.sh
+
 ENTRYPOINT ["/home/luser/autorun.sh"]
