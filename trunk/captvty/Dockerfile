@@ -4,7 +4,7 @@ MAINTAINER Stephane Bernigaud
 ENV DEBIAN_FRONTEND noninteractive
 
 #
-# Install wine1.7 and a few tools (not working before 1.7 :( )
+# Install wine1.7 and a few tools 
 #
 RUN dpkg --add-architecture i386
 
@@ -27,13 +27,11 @@ RUN chmod a+rx /tmp/dotnet_setup3.sh
 #
 RUN useradd --home-dir /home/luser --password pluser --create-home -K UID_MIN=42000 luser
 
-# SB1 
+
+USER luser
 RUN echo "export WINEPREFIX=/home/luser/.wine" >> /home/luser/.bashrc
 RUN echo "export WINEARCH=win32" >> /home/luser/.bashrc 
 RUN echo "alias ll='ls -als '" >> /home/luser/.bashrc
-
-USER luser
-# RUN export WINEPREFIX=/home/luser/.wine
 RUN echo "quiet=on" > /home/luser/.wgetrc
 
 # RUN mkdir -p /home/luser/.wine
@@ -89,10 +87,9 @@ RUN apt-mark auto 				\
 RUN apt-get -y -q autoremove
 RUN apt-get -y -q clean
 
-# COPY entrypoint-captvty.sh /home/luser/
-# RUN chmod +rx /home/luser/entrypoint-captvty.sh
-# RUN chown luser:luser /home/luser/entrypoint-captvty.sh
-# ENTRYPOINT /home/luser/entrypoint-captvty.sh
+COPY autorun.sh /home/luser/
+RUN chmod +rx /home/luser/autorun.sh
+RUN chown luser:luser /home/luser/autorun.sh
 
 
 USER luser
@@ -105,3 +102,7 @@ WORKDIR /home/luser
 # DEBUG CMD wine ./captvty/Captvty.exe >/dev/null 2>&1; rm -rf /tmp/.wine-*
 
 # ENTRYPOINT wine /home/captvty/Captvty.exe
+# COPY autorun.sh /home/luser/
+# RUN chmod +rx /home/luser/autorun.sh
+# RUN chown luser:luser /home/luser/autorun.sh
+# ENTRYPOINT /home/luser/autorun.sh
