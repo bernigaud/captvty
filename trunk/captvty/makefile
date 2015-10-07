@@ -63,6 +63,9 @@ ssh: build
 run: build  
 	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) -t $(DOCKER_TAG) /home/luser/autorun.sh
 
+alwaysrun: build  
+	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) --restart=always -t $(DOCKER_TAG) /home/luser/autorun.sh
+
 clean:
 	@rm -f $(DOCKER_ID_FILE)
 	
