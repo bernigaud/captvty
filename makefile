@@ -61,7 +61,7 @@ ssh: build
 	ssh -X -P $(DOCKER_PORT) root@$(DOCKER_IP)
 	 
 run: build  
-	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) -t $(DOCKER_TAG) wine ./captvty/Captvty.exe >/dev/null 2>&1; rm -rf /home/luser/.wine-*
+	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) -t $(DOCKER_TAG) /home/luser/autorun.sh
 
 clean:
 	@rm -f $(DOCKER_ID_FILE)
