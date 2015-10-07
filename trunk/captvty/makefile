@@ -2,7 +2,7 @@
 # Makefile for docker image management
 ######################################## 
 
-DOCKER_CMD=sudo docker
+DOCKER_CMD=docker
 DOCKER_TAG=stef/captvty
 DOCKER_NAME=captvty
 DOCKER_HOSTNAME=captvty
@@ -33,9 +33,12 @@ $(DOCKER_ID_FILE): Dockerfile
 	@sleep 1
 	
 $(HOST_DOWNLOAD_DIR):
-	mkdir -p $<
+	@mkdir -p $(HOST_DOWNLOAD_DIR)
 	
-build: $(HOST_DOWNLOAD_DIR) $(DOCKER_ID_FILE) 
+checkWine:
+	@wine --version | grep "1\.7" || (echo "Wine 1.7 not found" && exit 99)
+	
+build: checkWine $(HOST_DOWNLOAD_DIR) $(DOCKER_ID_FILE) 
 	@echo built.
 
 # push into registry
@@ -58,7 +61,7 @@ ssh: build
 	ssh -X -P $(DOCKER_PORT) root@$(DOCKER_IP)
 	 
 run: build  
-	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) -t $(DOCKER_TAG) wine ./captvty/Captvty.exe >/dev/null 2>&1; rm -rf /tmp/.wine-*
+	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) -t $(DOCKER_TAG) wine ./captvty/Captvty.exe >/dev/null 2>&1; rm -rf /home/luser/.wine-*
 
 clean:
 	@rm -f $(DOCKER_ID_FILE)
