@@ -3,7 +3,7 @@
 ######################################## 
 
 DOCKER_CMD=docker
-DOCKER_TAG=stef/captvty
+DOCKER_TAG=bernigaud/captvty
 DOCKER_NAME=captvty
 DOCKER_HOSTNAME=captvty
 
@@ -54,17 +54,17 @@ info:
 
 # simple command line access
 bash: build 
-	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) -i -t $(DOCKER_TAG) bash
+	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) -i -t $(DOCKER_TAG) /bin/bash
 	
 ssh: build
 	DOCKER_IP=`$(DOCKER_CMD)  inspect $(DOCKER_NAME)  | grep IPAd)`
 	ssh -X -P $(DOCKER_PORT) root@$(DOCKER_IP)
 	 
 run: build  
-	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) -t $(DOCKER_TAG) /home/luser/autorun.sh
+	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) -t $(DOCKER_TAG)  
 
 alwaysrun: build  
-	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) --restart=always -t $(DOCKER_TAG) /home/luser/autorun.sh
+	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) --restart=always -t $(DOCKER_TAG)  
 
 clean:
 	@rm -f $(DOCKER_ID_FILE)

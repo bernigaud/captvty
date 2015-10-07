@@ -25,7 +25,7 @@ RUN chmod a+rx /tmp/dotnet_setup3.sh
 #
 # Create a user to run Captvty
 #
-RUN useradd --home-dir /home/luser --password pluser --create-home -K UID_MIN=42000 luser
+RUN useradd --home-dir /home/luser --create-home -K UID_MIN=42000 luser
 
 
 USER luser
@@ -68,8 +68,6 @@ RUN mkdir /home/luser/downloads
 #
 # RUN cat /home/luser/captvty/captvty.ini | uconv -f UTF-16LE | sed 's/DownloadDir=.*/DownloadDir=Z:\\home\\luser\\downloads\r/' | uconv -t UTF-16LE > /home/luser/captvty/captvty.ini.new && mv -f /home/luser/captvty/captvty.ini.new /home/luser/captvty/captvty.ini
 USER root
-# RUN passwd -d luser
-# RUN adduser luser sudo
 COPY captvty.ini /home/luser/captvty/
 RUN chown luser:luser /home/luser/captvty/captvty.ini
 
@@ -88,12 +86,10 @@ RUN apt-mark auto 				\
 RUN apt-get -y -q autoremove
 RUN apt-get -y -q clean
 
-COPY autorun.sh /home/luser/
-RUN chmod +rx /home/luser/autorun.sh
-RUN chown luser:luser /home/luser/autorun.sh
-
+ 
 
 USER luser
 WORKDIR /home/luser
 
-# ENTRYPOINT /home/luser/autorun.sh
+COPY autorun.sh /home/luser/autorun.sh
+ENTRYPOINT ["/home/luser/autorun.sh"]
