@@ -66,6 +66,13 @@ run: build
 clean:
 	@rm -f $(DOCKER_ID_FILE)
 	
+status:
+	@docker ps -f name=$(DOCKER_NAME) | grep -c $(DOCKER_NAME) > /dev/null && echo Started || echo Stopped
+	
+exitifrunning:
+	@docker ps -f name=$(DOCKER_NAME) | grep -c $(DOCKER_NAME) > /dev/null && exit 98 
+	
+	
 stop:
 	#$(DOCKER_CMD) rm  $(shell ${DOCKER_CMD} ps -aq)
 	$(DOCKER_CMD) rm -f $(DOCKER_HOSTNAME) 
