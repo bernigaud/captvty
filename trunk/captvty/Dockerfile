@@ -55,6 +55,7 @@ RUN xvfb-run ./dotnet_setup3.sh
 # Install Captvty
 #
 RUN mkdir /home/luser/captvty
+
 # TODO : get last version ? 
 # WARNING: checksum à changer si la version change !!!
 RUN wget http://captvty.fr/?captvty-2.3.9.zip -O ./captvty.zip && sha1sum captvty.zip && sha1sum captvty.zip | awk '$1 != "a40f0ee1e04bc903419baba82f29e4c09d5f9866" { print "Bad checksum"; exit 1; }'										
@@ -67,8 +68,8 @@ RUN mkdir /home/luser/downloads
 #
 # RUN cat /home/luser/captvty/captvty.ini | uconv -f UTF-16LE | sed 's/DownloadDir=.*/DownloadDir=Z:\\home\\luser\\downloads\r/' | uconv -t UTF-16LE > /home/luser/captvty/captvty.ini.new && mv -f /home/luser/captvty/captvty.ini.new /home/luser/captvty/captvty.ini
 USER root
-RUN passwd -d luser
-RUN adduser luser sudo
+# RUN passwd -d luser
+# RUN adduser luser sudo
 COPY captvty.ini /home/luser/captvty/
 RUN chown luser:luser /home/luser/captvty/captvty.ini
 
@@ -95,14 +96,4 @@ RUN chown luser:luser /home/luser/autorun.sh
 USER luser
 WORKDIR /home/luser
 
-# CMD wine ./captvty/Captvty.exe >/dev/null 2>&1; rm -rf /tmp/.wine-*
-
-
-# RUN wget http://download.soft2base.com/soft2base.exe
-# DEBUG CMD wine ./captvty/Captvty.exe >/dev/null 2>&1; rm -rf /tmp/.wine-*
-
-# ENTRYPOINT wine /home/captvty/Captvty.exe
-# COPY autorun.sh /home/luser/
-# RUN chmod +rx /home/luser/autorun.sh
-# RUN chown luser:luser /home/luser/autorun.sh
 # ENTRYPOINT /home/luser/autorun.sh
