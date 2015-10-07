@@ -1,27 +1,53 @@
 #!/bin/sh
 
+export WINEPREFIX=/home/luser/.wine
 export WINEARCH=win32
-export WINEPREFIX=/tmp/.wine
+export HOME=/home/luser
+
+# Avoid mono gecko alerts
+export WINEDLLOVERRIDES="mscoree,mshtml="
+
 # set -x 
 
-mkdir -p $WINEPREFIX
-ls -alsd /tmp/*
+
+# ls -alsd /tmp/*
 
 #debug 
 # mkdir /home/luser/.wine
-wine cmd.exe /c echo '%ProgramFiles%'
+# wine cmd.exe /c echo '%ProgramFiles%'
+# echo CLEANUP
+# wineserver -k 
+# rm -Rf $WINEPREFIX
+# # mkdir -p $WINEPREFIX
 
+# exit 0
 
 # wine reg add "HKCU\\Environment" /v "SystemDrive" /t REG_SZ /d "C:" /f
-# wine reg add "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager\\Environment\\Environment" /v "SystemDrive" /t REG_SZ /d "C:" /f
-# wine reg add "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager\\Environment\\Environment" /v "ProgramFiles" /t REG_SZ /d "C:\\Program Files" /f
-# wine regedit programfiles.reg
+# wine reg add "HKCU\\Environment" /v "ProgramFiles" /t REG_SZ /d "C:\\Program Files" /f
 
-winetricks -q comctl32
+# echo DONE-3
+winetricks -q vcrun2010 
+# corefonts
+
+# echo DONE-2
+# # wine reg /?
+# echo DONE-1 
+# # wine cmd /c "set"
+# echo DONE0
+# # wine reg query "HKCU\\Environment" /v "ProgramFiles"
+# echo DONE1
+# # wine reg add "HKCU\\Environment" /v "ProgramFiles" /t REG_SZ /d "C:\\Program Files" /f
+# # wine reg add "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager\\Environment\\Environment" /v "SystemDrive" /t REG_SZ /d "C:" /f
+# # wine reg add "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager\\Environment\\Environment" /v "ProgramFiles" /t REG_SZ /d "C:\\Program Files" /f
+# # wine regedit programfiles.reg
+
+# # winetricks -q comctl32
+
+# echo DONE2
 
 
 # Warning:  HOME must be correctly defined before calling this
-winetricks -q dotnet40
+winetricks -q dotnet40 corefonts
 
 wget http://captvty.fr/getgdiplus -O kb975337.exe
 wine kb975337.exe /x:kb975337 /q
@@ -36,3 +62,5 @@ winetricks -q ie8
 wget http://fpdownload.macromedia.com/pub/flashplayer/latest/help/install_flash_player_ax.exe -O fplayer.exe
 wine fplayer.exe -install -au 2
 # ENTRYPOINT wine /home/captvty/Captvty.exe
+
+wine reg add "HKCU\\Environment" /v "SystemDrive" /t REG_SZ /d "C:" /f
