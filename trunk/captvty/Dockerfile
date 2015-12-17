@@ -58,7 +58,8 @@ RUN mkdir /home/luser/captvty
 
 # TODO : get last version ? 
 # WARNING: checksum à changer si la version change !!!
-RUN wget http://captvty.fr/?captvty-2.3.9.zip -O ./captvty.zip && sha1sum captvty.zip && sha1sum captvty.zip | awk '$1 != "a40f0ee1e04bc903419baba82f29e4c09d5f9866" { print "Bad checksum"; exit 1; }'										
+# RUN wget http://captvty.fr/?captvty-2.3.9.zip -O ./captvty.zip && sha1sum captvty.zip && sha1sum captvty.zip | awk '$1 != "a40f0ee1e04bc903419baba82f29e4c09d5f9866" { print "Bad checksum"; exit 1; }'										
+RUN wget http://releases.captvty.fr/?captvty-2.3.10.zip -O ./captvty.zip && sha1sum captvty.zip && sha1sum captvty.zip | awk '$1 != "bfd41b75f71fad61f879978472c37a69372ea998" { print "Bad checksum"; exit 1; }'										
 RUN unzip ./captvty.zip -d /home/luser/captvty
 # Set the download directory
 RUN mkdir /home/luser/downloads 

@@ -61,7 +61,7 @@ ssh: build
 	ssh -X -P $(DOCKER_PORT) root@$(DOCKER_IP)
 	 
 run: build  
-	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) -t $(DOCKER_TAG)  
+	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) -t $(DOCKER_TAG)  &
 
 alwaysrun: build  
 	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) --restart=always -t $(DOCKER_TAG)  
