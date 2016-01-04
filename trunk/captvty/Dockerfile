@@ -56,11 +56,18 @@ RUN xvfb-run ./dotnet_setup3.sh
 #
 RUN mkdir /home/luser/captvty
 
+# read latest link
+RUN wget http://captvty.fr -O /tmp/captvty.html 
+
+RUN wget http:$(grep dl\ zip /tmp/captvty.html | cut -d= -f3 | cut -d\" -f2) -O /tmp/captvty.zip
+
+
 # TODO : get last version ? 
 # WARNING: checksum à changer si la version change !!!
 # RUN wget http://captvty.fr/?captvty-2.3.9.zip -O ./captvty.zip && sha1sum captvty.zip && sha1sum captvty.zip | awk '$1 != "a40f0ee1e04bc903419baba82f29e4c09d5f9866" { print "Bad checksum"; exit 1; }'										
-RUN wget http://releases.captvty.fr/?captvty-2.3.10.zip -O ./captvty.zip && sha1sum captvty.zip && sha1sum captvty.zip | awk '$1 != "bfd41b75f71fad61f879978472c37a69372ea998" { print "Bad checksum"; exit 1; }'										
-RUN unzip ./captvty.zip -d /home/luser/captvty
+#RUN wget http://releases.captvty.fr/?captvty-2.3.10.zip -O ./captvty.zip && sha1sum captvty.zip && sha1sum captvty.zip | awk '$1 != "bfd41b75f71fad61f879978472c37a69372ea998" { print "Bad checksum"; exit 1; }'										
+#RUN wget --referer=http://captvty.fr http://releases.captvty.fr/?captvty-2.3.10.1.zip -O /tmp/captvty.zip										
+RUN unzip /tmp/captvty.zip -d /home/luser/captvty
 # Set the download directory
 RUN mkdir /home/luser/downloads 
 
