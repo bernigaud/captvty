@@ -36,7 +36,7 @@ $(HOST_DOWNLOAD_DIR):
 	@mkdir -p $(HOST_DOWNLOAD_DIR)
 	
 checkWine:
-	@wine --version | grep "1\.7" || (echo "Wine 1.7 not found" && exit 99)
+	@wine --version | grep -e "1\.7" -e "1\.8"|| (echo "Wine 1.7+ not found" && exit 99)
 	
 build: checkWine $(HOST_DOWNLOAD_DIR) $(DOCKER_ID_FILE) 
 	@echo built.
