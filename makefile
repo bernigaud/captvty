@@ -7,7 +7,7 @@ DOCKER_TAG=bernigaud/captvty
 DOCKER_NAME=captvty
 DOCKER_HOSTNAME=captvty
 
-HOST_DOWNLOAD_DIR=/media/DATA/download/captvty
+HOST_DOWNLOAD_DIR=/home/stef/downloads
 
 # full paths in -v
 # --rm to delete containers on exit
