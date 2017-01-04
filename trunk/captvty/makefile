@@ -54,6 +54,7 @@ info:
 
 # simple command line access
 bash: build 
+	xhost +
 	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) -i -t $(DOCKER_TAG) /bin/bash
 	
 ssh: build
@@ -61,6 +62,7 @@ ssh: build
 	ssh -X -P $(DOCKER_PORT) root@$(DOCKER_IP)
 	 
 run: build  
+	xhost +
 	$(DOCKER_CMD) run $(DOCKER_RUN_PARAMS) -t $(DOCKER_TAG)  &
 
 alwaysrun: build  
