@@ -57,7 +57,7 @@ RUN xvfb-run ./dotnet_setup3.sh
 RUN mkdir /home/luser/captvty
 
 # read latest link
-RUN echo "Change me to upgrade: v2.5.6.2 " && wget http://captvty.fr -O /tmp/captvty.html 
+RUN echo "Change me to upgrade: v2.5.9 " && wget http://captvty.fr -O /tmp/captvty.html 
 
 RUN wget http:$(grep dl\ zip /tmp/captvty.html | cut -d= -f3 | cut -d\" -f2) -O /tmp/captvty.zip
 
