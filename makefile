@@ -20,6 +20,7 @@ DOCKER_ID_FILE=log/built
   
 help:
 	@echo "make build 	: build the docker images"
+	@echo "make run 	: start the docker images"
 	@echo "make clean	: simple clean up"
 	@echo "make cleandocker	: clean + delete any running '$(DOCKER_NAME)' container"
 	@echo "make help	: this page"
