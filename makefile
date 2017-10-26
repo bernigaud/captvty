@@ -3,7 +3,7 @@
 ######################################## 
 
 DOCKER_CMD=docker
-DOCKER_TAG=bernigaud/captvty:2.5.9
+DOCKER_TAG=bernigaud/captvty:2.6.2
 DOCKER_NAME=captvty
 DOCKER_HOSTNAME=captvty
 
